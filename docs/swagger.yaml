@@ -1,0 +1,275 @@
+basePath: /
+definitions:
+  gin.H:
+    additionalProperties: {}
+    type: object
+  main.Partnerek:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      partnernev:
+        type: string
+    type: object
+  main.Szamlak:
+    properties:
+      id:
+        type: integer
+      megjegyzes:
+        type: string
+      partnerid:
+        type: integer
+      szamlaszam:
+        type: string
+      tetelszam:
+        type: integer
+    type: object
+host: localhost:10090
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: Számlák és Partnerek kezelése.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Számlák és Partnerek kezelése
+  version: "1.0"
+paths:
+  /partnerek:
+    get:
+      consumes:
+      - application/json
+      description: Partnerek lekérdezése
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Partnerek'
+            type: array
+      summary: Partnerek lekérdezése
+      tags:
+      - partnerek
+    post:
+      consumes:
+      - application/json
+      description: Partner hozzáadása
+      parameters:
+      - description: Partnerek to add
+        in: body
+        name: partnerek
+        required: true
+        schema:
+          $ref: '#/definitions/main.Partnerek'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Partnerek'
+      summary: Partner hozzáadása
+      tags:
+      - partnerek
+  /partnerek/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Partner törlése
+      parameters:
+      - description: Partner ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Partner törlése
+      tags:
+      - partnerek
+    get:
+      consumes:
+      - application/json
+      description: Egy partner lekérdezése
+      parameters:
+      - description: Partner ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Partnerek'
+      summary: Egy partner lekérdezése
+      tags:
+      - partnerek
+    put:
+      consumes:
+      - application/json
+      description: Partner információ frissítése
+      parameters:
+      - description: Partner ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Partner to update
+        in: body
+        name: partnerek
+        required: true
+        schema:
+          $ref: '#/definitions/main.Partnerek'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Partnerek'
+      summary: Partner információ frissítése
+      tags:
+      - partnerek
+  /szamlak:
+    get:
+      consumes:
+      - application/json
+      description: Számlák lekérdezése
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Szamlak'
+            type: array
+      summary: Számlák lekérdezése
+      tags:
+      - szamlak
+    post:
+      consumes:
+      - application/json
+      description: Számla hozzáadása
+      parameters:
+      - description: Receipt to add
+        in: body
+        name: szamlak
+        required: true
+        schema:
+          $ref: '#/definitions/main.Szamlak'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Szamlak'
+      summary: Számla hozzáadása
+      tags:
+      - szamlak
+  /szamlak/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Számla törlése
+      parameters:
+      - description: Receipt ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/gin.H'
+      summary: Számla törlése
+      tags:
+      - szamlak
+    get:
+      consumes:
+      - application/json
+      description: Egy számla lekérdezése
+      parameters:
+      - description: Receipt ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Szamlak'
+      summary: Egy számla lekérdezése
+      tags:
+      - szamlak
+    put:
+      consumes:
+      - application/json
+      description: Számla frissítése
+      parameters:
+      - description: Receipt ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Receipt to update
+        in: body
+        name: szamlak
+        required: true
+        schema:
+          $ref: '#/definitions/main.Szamlak'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Szamlak'
+      summary: Számla frissítése
+      tags:
+      - szamlak
+  /szamlak/search:
+    get:
+      consumes:
+      - application/json
+      description: Számla keresése név alapján
+      parameters:
+      - description: Receipt number
+        in: query
+        name: szamlaszam
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Szamlak'
+            type: array
+      summary: Számla keresése név alapján
+      tags:
+      - szamlak
+swagger: "2.0"

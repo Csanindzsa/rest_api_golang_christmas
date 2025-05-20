@@ -1,0 +1,415 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Számlák és Partnerek kezelése.",
+        "title": "Számlák és Partnerek kezelése",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:10090",
+    "basePath": "/",
+    "paths": {
+        "/partnerek": {
+            "get": {
+                "description": "Partnerek lekérdezése",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "partnerek"
+                ],
+                "summary": "Partnerek lekérdezése",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Partnerek"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Partner hozzáadása",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "partnerek"
+                ],
+                "summary": "Partner hozzáadása",
+                "parameters": [
+                    {
+                        "description": "Partnerek to add",
+                        "name": "partnerek",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Partnerek"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/main.Partnerek"
+                        }
+                    }
+                }
+            }
+        },
+        "/partnerek/{id}": {
+            "get": {
+                "description": "Egy partner lekérdezése",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "partnerek"
+                ],
+                "summary": "Egy partner lekérdezése",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Partner ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Partnerek"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Partner információ frissítése",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "partnerek"
+                ],
+                "summary": "Partner információ frissítése",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Partner ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Partner to update",
+                        "name": "partnerek",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Partnerek"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Partnerek"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Partner törlése",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "partnerek"
+                ],
+                "summary": "Partner törlése",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Partner ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        },
+        "/szamlak": {
+            "get": {
+                "description": "Számlák lekérdezése",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "szamlak"
+                ],
+                "summary": "Számlák lekérdezése",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Szamlak"
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Számla hozzáadása",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "szamlak"
+                ],
+                "summary": "Számla hozzáadása",
+                "parameters": [
+                    {
+                        "description": "Receipt to add",
+                        "name": "szamlak",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Szamlak"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/main.Szamlak"
+                        }
+                    }
+                }
+            }
+        },
+        "/szamlak/search": {
+            "get": {
+                "description": "Számla keresése név alapján",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "szamlak"
+                ],
+                "summary": "Számla keresése név alapján",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Receipt number",
+                        "name": "szamlaszam",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Szamlak"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/szamlak/{id}": {
+            "get": {
+                "description": "Egy számla lekérdezése",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "szamlak"
+                ],
+                "summary": "Egy számla lekérdezése",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Receipt ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Szamlak"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Számla frissítése",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "szamlak"
+                ],
+                "summary": "Számla frissítése",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Receipt ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Receipt to update",
+                        "name": "szamlak",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/main.Szamlak"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Szamlak"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Számla törlése",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "szamlak"
+                ],
+                "summary": "Számla törlése",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Receipt ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/gin.H"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "gin.H": {
+            "type": "object",
+            "additionalProperties": {}
+        },
+        "main.Partnerek": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "partnernev": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Szamlak": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "megjegyzes": {
+                    "type": "string"
+                },
+                "partnerid": {
+                    "type": "integer"
+                },
+                "szamlaszam": {
+                    "type": "string"
+                },
+                "tetelszam": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
