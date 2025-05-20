@@ -1,1 +1,4 @@
 https://github.com/omjigupta/golang-gin-restapi-mysql
+https://github.com/mkromi/go-gin-mysql-boilerplate/tree/main
+https://github.com/wisnuuakbr/simple-rest-api-go/tree/main
+https://github.com/Shashank771df/go-gin-rest-boilerplate
