@@ -1,0 +1,14 @@
+receiptnumber := c.Query("szamlaszam") //first we check if the nubmer as a query runs successfully
+
+
+rows, err := db.Query("SELECT ...") // then we query the data from the database
+...
+defer rows.Close() //important to close the rows after use
+
+var receipts []Szamlak // példányosítás és adatok átalakítása
+	for rows.Next() {
+		var receipt Szamlak
+		if err := rows.Scan(&partner.Id)
+        ...
+        receipts = append(receipts, receipt)
+    }

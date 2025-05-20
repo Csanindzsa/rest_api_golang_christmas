@@ -1,0 +1,36 @@
+package main
+
+import (
+import (
+_ "database/sql"
+_ "fmt"
+_ "log"
+_ "net/http"
+_ "strconv"
+
+    _ "github.com/gin-gonic/gin"
+    _ "github.com/go-sql-driver/mysql"
+
+    _ "rest_api_golang_christmas/docs"
+
+    swaggerFiles "github.com/swaggo/files"
+    ginSwagger "github.com/swaggo/gin-swagger"
+
+)
+
+    _ swaggerFiles "github.com/swaggo/files"
+    _ ginSwagger "github.com/swaggo/gin-swagger"
+
+go mod init todoapp20250328
+
+go mod tidy
+
+go get github.com/gin-gonic/gin
+go get github.com/go-sql-driver/mysql
+go get github.com/swaggo/files
+go get github.com/swaggo/gin-swagger
+
+go install golang.org/x/tools/cmd/goimports@latest
+goimports -w main.go
+
+go mod tidy

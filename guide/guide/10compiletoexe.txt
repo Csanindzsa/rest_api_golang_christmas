@@ -1,0 +1,5 @@
+go build -o todoapp.exe
+
+go build -ldflags="-s -w" -o todoapp.exe
+
+go build -ldflags="-linkmode external -extldflags -static" -o todoapp.exe

@@ -1,0 +1,50 @@
+func main() {
+
+	rootDb, err := sql.Open("mysql", "root:@tcp(localhost:3306)/")
+	if err != nil {
+		log.Fatal("Failed to connect to MySQL:", err)
+	}
+	
+	// Create database if it doesn't exist
+	_, err = rootDb.Exec("CREATE DATABASE IF NOT EXISTS todoapp")
+	if err != nil {
+		log.Fatal("Failed to create database:", err)
+	}
+	rootDb.Close()
+	
+	// Connect to database
+	db, err := sql.Open("mysql", "root:@tcp(localhost:3306)/todoapp?parseTime=true")
+	if err != nil {
+		log.Fatal("Failed to connect to database:", err)
+	}
+	defer db.Close()
+
+	/*
+	var err error
+	connString := "root:@tcp(localhost:3306)/{adatbazis neve}"
+	db, err = sql.Open("mysql", connString)
+	if err != nil {
+		log.Fatal("Error creating connection pool: ", err.Error())
+	}
+	defer db.Close()
+	*/
+
+	err = db.Ping() // ping database
+	if err != nil {
+		log.Fatal("Error pinging database: ", err.Error())
+	}
+
+	// Create tables
+	err = createTables() // tables if they do not exist
+	if err != nil {
+		log.Fatal("Error creating tables: ", err.Error())
+	}
+
+	router := gin.Default()
+	router.GET("/partnerek", getPartners)
+	router.GET("/partnerek/:id", getPartner)
+	router.GET("/szamlak/search", searchReceipt)
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	router.Run(":9090")
+}

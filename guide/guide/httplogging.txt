@@ -1,0 +1,28 @@
+// 400 - 500 kódok
+
+if err != nil {
+		c.IndentedJSON(http.StatusInternalServerError, gin.H{"message": err.Error()})
+		return
+	}
+
+if err := c.BindJSON(&newPartner); err != nil { // c.BindJSON is checking if the data is valid JSON and if it is not, it will return an error.
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message": "Hibás lekérdezés"})
+		return
+	}
+
+if err == sql.ErrNoRows {
+	c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Számla nem található"})
+	return
+}
+
+c.IndentedJSON(http.StatusNotFound, gin.H{"message": "Partner nem találva"})
+
+// 200 as kódok
+
+c.IndentedJSON(http.StatusOK, {returning data})
+    
+c.IndentedJSON(http.StatusCreated, {returning data})
+
+c.IndentedJSON(http.StatusOK, gin.H{"message": "Partner törölve"})
+
+

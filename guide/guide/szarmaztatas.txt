@@ -1,0 +1,2 @@
+var updatedReceipt Szamlak - valtozo
+var receipts []Szamlak - tömb

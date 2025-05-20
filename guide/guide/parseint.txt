@@ -1,0 +1,2 @@
+idParam := c.Param("id")
+id, err := strconv.Atoi(idParam)

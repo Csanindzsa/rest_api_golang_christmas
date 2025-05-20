@@ -1,0 +1,12 @@
+# Clean the module cache
+go clean -modcache
+
+# Re-initialize module if needed
+go mod init todoapp20250328
+
+# Get specific versions of the packages
+go get github.com/swaggo/gin-swagger@v1.6.0
+go get github.com/swaggo/files@v1.0.1
+
+# Tidy up all dependencies
+go mod tidy

@@ -1,0 +1,12 @@
+// @Summary Partner hozzáadása
+// @Description Partner hozzáadása
+// @Tags partnerek
+// @Accept json
+// @Produce json
+// @Param partnerek body Partnerek true "Partnerek to add"
+// @Success 201 {object} Partnerek
+// @Router /partnerek [post]
+
+go install github.com/swaggo/swag/cmd/swag@latest
+
+swag init --parseDependency --parseInternal

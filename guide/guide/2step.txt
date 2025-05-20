@@ -1,0 +1,4 @@
+type Partnerek struct {
+    Id int `json:"id"`
+    PriorityName string `json:"priorityName,omitempty"` //üresen is jó
+}

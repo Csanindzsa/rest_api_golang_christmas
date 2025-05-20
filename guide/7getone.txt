@@ -1,0 +1,3 @@
+err = db.QueryRow("SELECT Id, PartnerNev, Email FROM Partnerek WHERE Id = ?", id).Scan(&partner.Id, &partner.PartnerNev, &partner.Email)
+
+.Scan converts database values to Go types and stores them in the variables passed as arguments.

@@ -1,0 +1,3 @@
+_, err := db.Exec("INSERT INTO Partnerek (PartnerNev, Email) VALUES (?, ?)", newPartner.PartnerNev, newPartner.Email)
+
+alternative is using where instead of values like this: WHERE = "?", {variable}
